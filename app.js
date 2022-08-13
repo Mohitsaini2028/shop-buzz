@@ -5,6 +5,11 @@ var config = require('./config/database');
 var session = require('express-session');
 var expressValidator = require('express-validator');
 var fileUpload = require('express-fileupload');
+// const multer = require('multer');
+// const storage = multer.diskStorage({
+//     destination: cb(null, '')                                //callback function
+// })
+
 
 // Initialize app
 var app = express();
@@ -16,6 +21,17 @@ app.set('view engine', 'ejs');
 // Set public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Set global errors varaible
+app.locals.errors = null;
+
+
+// Express fileUpload middleware  - getting file from 'form' because express or body-parser didn't handle it
+app.use(fileUpload());                              
+
+
+// parse application/x-www-form-urlencoded
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 
 // Session setup
 app.use(session({
@@ -40,6 +56,27 @@ app.use(expressValidator({
             msg: msg,
             value: value
         };
+    },
+    customValidators: {
+        isImage: function (value, filename) {
+            var extension = (path.extname(filename)).toLowerCase();
+            switch (extension) {
+                case '.jpg':
+                    return '.jpg';
+                case '.jpeg':
+                    return '.jpeg';
+                case '.png':
+                    return '.png';
+                case '.webp':
+                    return '.webp';
+                case '.avif':
+                    return '.avif';
+                case '':
+                    return '.jpg';
+                default:
+                    return false;
+            }
+        }
     }
 }));
 
@@ -52,8 +89,6 @@ app.use(function (req, res, next) {
 
 
 
-app.use(express.urlencoded({extended: false}));
-app.use(express.json());
 
 // Set routes
 var pages = require('./routes/pages.js');
