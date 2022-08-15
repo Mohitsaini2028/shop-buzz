@@ -33,6 +33,7 @@ router.get('/:slug', function (req, res) {
         if (err)
             console.log(err);
         
+        // if not is not present then redirect it to home.
         if (!page) {
             res.redirect('/');
         } else {
