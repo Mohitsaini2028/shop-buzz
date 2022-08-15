@@ -2,6 +2,13 @@
     background-color: teal;
 } */
 
+
+:root{
+    --bg-admin: #1e90ff;
+    --heading-admin: #df1113;
+    
+}
+
 .sorting tr:not(.home) {
     cursor: pointer;
 }
