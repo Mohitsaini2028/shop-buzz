@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
         <link rel="stylesheet" href="/css/style.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
     </head>
 
     <body>
@@ -44,3 +45,28 @@
                 <% }); %>
             </ul>
         </div>
+
+
+        <div class="container">
+            <%- messages('messages', locals) %>
+            
+            <% if (errors) {%>
+                <% errors.forEach(function(error) { %>
+                <div class="alert alert-danger">
+                    <%= error.msg %>
+                </div>
+                <% });%>
+            <% }%>
+    
+            <div class="row">
+                <div class="col-xs-12 col-md-3">
+                    <h3>Categories</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="/products">All products</a></li>
+                        <% categories.forEach(function(c){ %>
+                            <li class="list-group-item"><a href="/products/<%= c.slug %>"><%= c.title %></a></li>
+                        <% }); %>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-1"></div>
+                <div class="col-xs-12 col-md-8">

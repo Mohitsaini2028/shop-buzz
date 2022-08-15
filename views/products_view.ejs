@@ -1,0 +1,48 @@
+<%- include('_layouts/header.ejs'); %>
+
+    
+<div class="container">
+
+    <div class="row">
+        <div id="demo" class="col carousel slide my-3" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#demo1" data-slide-to="0" class="active"></li>
+
+                <li data-target="#demo2" data-slide-to="1"></li>
+
+            </ul>
+        
+    <div class="container carousel-inner no-padding">
+        <div class="carousel-item active">
+            
+            
+
+            <% products.forEach(function(p){ %>
+                <div class="col-xs-3 col-sm-3 col-md-3">
+
+                    <div class="card" style="width: 18rem;">
+                        
+                        <img class="card-img-top" width="236px"  src="/product_images/<%= p.id %>/<%= p.image %>" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title"><b><%= p.title.slice(1, 20) %></b></h5>
+                        <p class="card-text">$<%= parseFloat(p.originalPrice).toFixed(2) %></p>
+                        <a href="/products/<%= p.category %>/<%= p.slug %>" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        
+            
+    <% }); %>
+    
+        
+    
+    </div>
+</div>    
+</div>    
+
+</div>
+</div>
+            
+<%- include('_layouts/footer.ejs'); %>
+

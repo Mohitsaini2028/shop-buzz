@@ -25,7 +25,7 @@ router.get('/', function (req, res) {
     });
 
     Product.find(function (err, products) {
-        res.render('admin/products', {
+        return res.render('admin/products', {
             products: products,
             count: count
         });
@@ -45,7 +45,7 @@ router.get('/add-product', function (req, res) {
     var inStock = "";
 
     Category.find(function (err, categories) {
-        res.render('admin/add_product', {
+        return res.render('admin/add_product', {
             title: title,
             desc: desc,
             categories: categories,
@@ -340,7 +340,7 @@ router.post('/edit-product/:id', function (req, res) {
                         }
 
                         req.flash('success', 'Product edited!');
-                        res.redirect('/admin/products/edit-product/' + id);
+                        return res.redirect('/admin/products/edit-product/' + id);
                     });
 
                 });
@@ -363,13 +363,18 @@ router.post('/product-gallery/:id', function (req, res) {
     productImage.mv(path, function (err) {
         if (err)
             console.log(err);
+        try{
 
-        resizeImg(fs.readFileSync(path), {width: 100, height: 100}).then(function (buf) {
-            fs.writeFileSync(thumbsPath, buf);
-        });
+            resizeImg(fs.readFileSync(path), {width: 100, height: 100}).then(function (buf) {
+                fs.writeFileSync(thumbsPath, buf);
+            });
+        }
+        catch(error){
+            console.log(error);
+        }
     });
 
-    res.sendStatus(200);
+    return res.sendStatus(200);
 
 });
 
@@ -390,7 +395,7 @@ router.get('/delete-image/:image', function (req, res) {
                     console.log(err);
                 } else {
                     req.flash('success', 'Image deleted!');
-                    res.redirect('/admin/products/edit-product/' + req.query.id);
+                    return res.redirect('/admin/products/edit-product/' + req.query.id);
                 }
             });
         }
@@ -414,7 +419,7 @@ router.get('/delete-product/:id', function (req, res) {
             });
             
             req.flash('success', 'Product deleted!');
-            res.redirect('/admin/products');
+            return res.redirect('/admin/products');
         }
     });
 

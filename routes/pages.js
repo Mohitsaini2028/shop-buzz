@@ -9,16 +9,26 @@ var Page = require('../models/page');
  */
 router.get('/', function (req, res) {
 
-    res.render('index');
+    // res.render('index');
     Page.findOne({slug: 'home'}, function (err, page) {
         if (err)
             console.log(err);
 
-        res.render('index', {
+            return res.render('index', {
             title: page.title,
             content: page.content
         });
     });
+    
+});
+
+
+router.get('/products', function (req, res) {
+
+        return res.render('product_view', {
+            title: "products",
+        });
+
     
 });
 
@@ -37,7 +47,7 @@ router.get('/:slug', function (req, res) {
         if (!page) {
             res.redirect('/');
         } else {
-            res.render('index', {
+            return res.render('index', {
                 title: page.title,
                 content: page.content
             });

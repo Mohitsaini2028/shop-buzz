@@ -25,7 +25,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Set global errors varaible
 app.locals.errors = null;
 
-
 // Get Page Model
 var Page = require('./models/page');
 
@@ -38,7 +37,17 @@ Page.find({}).sort({sorting: 1}).exec(function (err, pages) {
     }
 });
 
+// Get Category Model
+var Category = require('./models/category');
 
+// Get all categories to pass to header.ejs
+Category.find(function (err, categories) {
+    if (err) {
+        console.log(err);
+    } else {
+        app.locals.categories = categories;
+    }
+});
 
 // Express fileUpload middleware  - getting file from 'form' because express or body-parser didn't handle it
 app.use(fileUpload());                              
@@ -99,7 +108,7 @@ app.use(expressValidator({
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
     res.locals.messages = require('express-messages')(req, res);
-    next();
+    return next();
 });
 
 
@@ -110,11 +119,13 @@ var pages = require('./routes/pages.js');
 var adminpages = require('./routes/admin_pages.js');
 var adminCategories = require('./routes/admin_categories.js');
 var adminProducts = require('./routes/admin_products.js');
+var products = require('./routes/products.js');
 
 
 app.use('/admin/pages', adminpages);
 app.use('/admin/categories', adminCategories);
 app.use('/admin/products', adminProducts);
+app.use('/products', products);
 app.use('/', pages);
 
 

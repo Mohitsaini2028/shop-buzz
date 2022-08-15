@@ -12,7 +12,7 @@ var Page = require('../models/page');
 
 router.get('/', function(req,res){
     Page.find({}).sort({sorting: 1}).exec(function (err, pages) {
-        res.render('admin/pages', {
+        return res.render('admin/pages', {
             pages: pages
         });
     });
@@ -31,7 +31,7 @@ router.get('/add-page', function (req, res) {
     var slug = "";
     var content = "";
 
-    res.render('admin/add_page', {
+    return res.render('admin/add_page', {
         title: title,
         slug: slug,
         content: content
@@ -58,7 +58,7 @@ router.post('/add-page', function (req, res) {
     
     if (errors) {
         console.log("ERROR", errors);
-        res.render('admin/add_page', {
+        return res.render('admin/add_page', {
             errors: errors,
             title: title,
             slug: slug,
@@ -70,7 +70,7 @@ router.post('/add-page', function (req, res) {
             if(page){
                 console.log("PAGE EXIST");
                 req.flash('danger', 'Page slug exist, choose another name.');
-                res.render('admin/add_page', {
+                return res.render('admin/add_page', {
                     title: title,
                     slug: slug,
                     content: content
@@ -98,7 +98,7 @@ router.post('/add-page', function (req, res) {
                     });
 
                     req.flash('success', 'Page added!');
-                    res.redirect('/admin/pages');
+                    return res.redirect('/admin/pages');
                 });
             }
         });
@@ -159,7 +159,7 @@ router.get('/edit-page/:id', function (req, res) {
         if (err)
             return console.log(err);
 
-        res.render('admin/edit_page', {
+        return res.render('admin/edit_page', {
             title: page.title,
             slug: page.slug,
             content: page.content,
@@ -188,7 +188,7 @@ router.post('/edit-page/:id', function (req, res) {
     var errors = req.validationErrors();
 
     if (errors) {
-        res.render('admin/edit_page', {
+        return res.render('admin/edit_page', {
             errors: errors,
             title: title,
             slug: slug,
@@ -199,7 +199,7 @@ router.post('/edit-page/:id', function (req, res) {
         Page.findOne({slug: slug, _id: {'$ne': id}}, function (err, page) {
             if (page) {
                 req.flash('danger', 'Page slug exists, choose another name.');
-                res.render('admin/edit_page', {
+                return res.render('admin/edit_page', {
                     title: title,
                     slug: slug,
                     content: content,
@@ -229,7 +229,7 @@ router.post('/edit-page/:id', function (req, res) {
 
 
                         req.flash('success', 'Page edited!');
-                        res.redirect('/admin/pages/edit-page/' + id);
+                        return res.redirect('/admin/pages/edit-page/' + id);
                     });
 
                 });
@@ -258,7 +258,7 @@ router.get('/delete-page/:id', function (req, res) {
         });
 
         req.flash('success', 'Page deleted!');
-        res.redirect('/admin/pages/');
+        return res.redirect('/admin/pages/');
     });
 });
 
