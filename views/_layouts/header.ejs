@@ -56,8 +56,8 @@
                 )</a>
                 </li>
                 <li>
-                  <li><a class="mx-2 bg-white text-dark text-decoration-none rounded p-2" href="/user/register"> Register</a></li>
-                  <li><a class="mx-2 bg-white text-dark text-decoration-none rounded p-2" href="/user/login"> Login</a></li>
+                  <li><a class="mx-2 bg-white text-dark text-decoration-none rounded p-2" href="/users/register"> Register</a></li>
+                  <li><a class="mx-2 bg-white text-dark text-decoration-none rounded p-2" href="/users/login"> Login</a></li>
                 </li>  
               </ul>
             </div>
@@ -75,15 +75,26 @@
                 <% });%>
             <% }%>
     
+            <% if (title!="Register") {%> 
             <div class="row">
                 <div class="col-md-2">
                     <h3>Categories</h3>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="/products">All products</a></li>
+                        <% if ("All products"==title) {%>
+                          <li class="list-group-item bg-dark text-white text-decoration-none"><a href="/products">All products</a></li>
+                        <% } else {%>
+                          <li class="list-group-item"><a href="/products">All products</a></li>
+                        <% }; %>
                         <% categories.forEach(function(c){ %>
-                            <li class="list-group-item"><a href="/products/<%= c.slug %>"><%= c.title %></a></li>
-                        <% }); %>
-                    </ul>
+                          <% if (c.slug==title) {%>
+                              <li class="list-group-item bg-dark text-white text-decoration-none"><a href="/products/<%= c.slug %>"><%= c.title %></a></li>
+                          <% } else {%>
+                              <li class="list-group-item"><a href="/products/<%= c.slug %>"><%= c.title %></a></li>
+                          <% }; %>
+                      <% }); %>
                 </div>
+              
                 <div class="col-xs-12 col-md-1"></div>
+            <% }%>
                 <div class="col-xs-8 col-md-8">
+              

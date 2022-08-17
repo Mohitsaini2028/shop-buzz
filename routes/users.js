@@ -12,7 +12,7 @@ var User = require('../models/user');
 router.get('/register', function (req, res) {
 
     res.render('register', {
-        title: 'Register'
+        title: 'Register',
     });
 
 });
@@ -90,7 +90,7 @@ router.get('/login', function (req, res) {
     if (res.locals.user) res.redirect('/');
     
     res.render('login', {
-        title: 'Log in'
+        title: 'Login'
     });
 
 });
@@ -108,17 +108,6 @@ router.post('/login', function (req, res, next) {
     
 });
 
-/*
- * GET logout
- */
-router.get('/logout', function (req, res) {
-
-    req.logout();
-    
-    req.flash('success', 'You are logged out!');
-    res.redirect('/users/login');
-
-});
 
 // Exports
 module.exports = router;
