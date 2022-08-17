@@ -6,6 +6,7 @@ var config = require('./config/database');
 var session = require('express-session');
 var expressValidator = require('express-validator');
 var fileUpload = require('express-fileupload');
+var passport = require('passport');
 // const multer = require('multer');
 // const storage = multer.diskStorage({
 //     destination: cb(null, '')                                //callback function
@@ -104,12 +105,18 @@ app.use(expressValidator({
     }
 }));
 
-// Express Messages middleware
+// Express Messages Middleware
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
     res.locals.messages = require('express-messages')(req, res);
     return next();
 });
+
+// Passport Config
+require('./config/passport')(passport);
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 //  '*' is because we want it to available for everywhere. 
 app.get('*', function(req,res,next) {
