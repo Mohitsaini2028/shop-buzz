@@ -132,6 +132,7 @@ var adminCategories = require('./routes/admin_categories.js');
 var adminProducts = require('./routes/admin_products.js');
 var products = require('./routes/products.js');
 var cart = require('./routes/cart.js');
+var user = require('./routes/users.js');
 
 
 app.use('/admin/pages', adminpages);
@@ -139,6 +140,7 @@ app.use('/admin/categories', adminCategories);
 app.use('/admin/products', adminProducts);
 app.use('/products', products);
 app.use('/cart', cart);
+app.use('/users', user);
 app.use('/', pages);
 
 
