@@ -111,8 +111,12 @@ app.use(function (req, res, next) {
     return next();
 });
 
-
-
+//  '*' is because we want it to available for everywhere. 
+app.get('*', function(req,res,next) {
+    res.locals.cart = req.session.cart;
+    res.locals.user = req.user || null;
+    next();
+ });
 
 // Set routes
 var pages = require('./routes/pages.js');
@@ -120,12 +124,14 @@ var adminpages = require('./routes/admin_pages.js');
 var adminCategories = require('./routes/admin_categories.js');
 var adminProducts = require('./routes/admin_products.js');
 var products = require('./routes/products.js');
+var cart = require('./routes/cart.js');
 
 
 app.use('/admin/pages', adminpages);
 app.use('/admin/categories', adminCategories);
 app.use('/admin/products', adminProducts);
 app.use('/products', products);
+app.use('/cart', cart);
 app.use('/', pages);
 
 

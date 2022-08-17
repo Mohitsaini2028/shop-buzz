@@ -1,5 +1,13 @@
 :root{
-    /* color:; */
+    --bg-col: #ffede7;
+    /* --bg-col: rgba(0, 0, 0, 0.2); */
+    --heading-admin: #df1113;
+    
+}
+
+.bg-col{
+    background-color: var(--bg-col);
+    color: black;
 }
 
 img.pimage {

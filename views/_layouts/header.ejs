@@ -6,24 +6,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title><%= (typeof title != "undefined" ? title : "") %></title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
-        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/css/style.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://kit.fontawesome.com/<%= process.env.FONT_AWSM %>.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/css/style.css" />
 
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">ShopBuzz</a>
+      <div class="ajaxbg">
+        <div class="ajaxinner">
+            <h3>You are now being redirected to paypal...</h3>
+            <button class="btn btn-primary" type="button" disabled>
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Loading...
+            </button>
+        </div>
+     </div>
+        <nav class="navbar navbar-expand-lg navbar-dark text-warning bg-dark" style="color: #7f4722;">
+            <a class="navbar-brand text-warning bg-dark" href="#">ShopBuzz</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
+              <ul class="nav navbar-nav">
                 <% pages.forEach(function(page){ %>
                     <% if (page.slug == "home") { %>
                 <li class="nav-item active">
@@ -36,11 +45,22 @@
                 <% } %>
                 <% }); %>
               </ul>
+              <ul class="nav nav-bar ml-auto">
+                <li>
+                  <a class="bg-info text-decoration-none text-white rounded p-2" href="/cart/checkout">Cart (
+                    <% if (typeof cart !== "undefined") { %>
+                    <%= cart.length %>
+                    <% } else {%>
+                    0
+                    <% } %>
+                )</a>
+                </li>
+              </ul>
             </div>
-          </nav>
+        </nav>
 
 
-        <div class="container">
+        <div class="container mt-2">
             <%- messages('messages', locals) %>
             
             <% if (errors) {%>
@@ -52,7 +72,7 @@
             <% }%>
     
             <div class="row">
-                <div class="col-xs-12 col-md-3">
+                <div class="col-md-2">
                     <h3>Categories</h3>
                     <ul class="list-group">
                         <li class="list-group-item"><a href="/products">All products</a></li>
@@ -62,4 +82,4 @@
                     </ul>
                 </div>
                 <div class="col-xs-12 col-md-1"></div>
-                <div class="col-xs-12 col-md-8">
+                <div class="col-xs-8 col-md-8">

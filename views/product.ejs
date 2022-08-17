@@ -9,10 +9,13 @@
         <br>
     </div>
     <div class="col-xs-12 col-md-7">
+        <p><span class="badge badge-secondary-2"><%= p.category.charAt(0).toUpperCase() + p.category.toLowerCase().slice(1)%></span> &nbsp <span class="badge badge-secondary"><%= p.subCategory %></span><p>
         <p><%= p.desc %></p>
-        <p>$<%= parseFloat(p.price).toFixed(2) %></p>
+        <h5 class="text-danger"> - <%= (100 * (Number(p.originalPrice) - Number(p.discountedPrice))/Number(p.originalPrice)).toFixed(0) %> %</h5>
+        <p>$ M.R.P.:<strike> <%= parseFloat(p.originalPrice).toFixed(2) %></strike>     <b class="text-success h4"><%= parseFloat(p.discountedPrice).toFixed(2) %></b></p>
+        <h4 class="mb-2">Inclusive of all taxes</h4>
         <% if (loggedIn) { %>
-        <p><a href="/cart/add/<%= p.slug %>">Add to cart</a></p>
+        <p><a class="bg-dark text-decoration-none text-warning p-2 rounded" href="/cart/add/<%= p.slug %>">Add to cart <i class="fa-solid fa-cart-arrow-down"></i></a></p>
         <% } else {%>
         <p>You must be logged in to purchase items.</p>
         <% } %>

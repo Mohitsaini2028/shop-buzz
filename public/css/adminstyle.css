@@ -4,9 +4,13 @@
 
 
 :root{
-    --bg-admin: #1e90ff;
-    --heading-admin: #df1113;
-    
+    --bg-admin: #3F51B5;
+    --bg-text: aliceblue;
+}
+
+.bg-col{
+    background-color: var(--bg-admin);
+    color: var(--bg-text);
 }
 
 .sorting tr:not(.home) {
