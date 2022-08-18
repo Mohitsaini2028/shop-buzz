@@ -71,7 +71,7 @@ router.post('/register', function (req, res) {
                                 console.log(err);
                             } else {
                                 req.flash('success', 'You are now registered!');
-                                return res.redirect('/users/login')
+                                return res.redirect('/home')
                             }
                         });
                     });
@@ -108,6 +108,19 @@ router.post('/login', function (req, res, next) {
     
 });
 
+router.get('/logout', function(req, res){
+
+    req.logout( function(err) {
+        if (err) { 
+            console.log(err);
+            req.flash('danger', 'Something went wrong!'); 
+            res.redirect('/home');
+            
+        }
+        req.flash('success', 'You are logged out!'); 
+        res.redirect('/users/login');
+      });
+});
 
 // Exports
 module.exports = router;

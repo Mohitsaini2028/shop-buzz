@@ -45,7 +45,7 @@
                 <% } %>
                 <% }); %>
               </ul>
-              <ul class="nav nav-bar ml-auto">
+              <ul class="nav nav-bar ml-auto mr-4">
                 <li>
                   <a class="bg-info text-decoration-none text-white rounded p-2" href="/cart/checkout">Cart (
                     <% if (typeof cart !== "undefined") { %>
@@ -55,10 +55,24 @@
                     <% } %>
                 )</a>
                 </li>
-                <li>
-                  <li><a class="mx-2 bg-white text-dark text-decoration-none rounded p-2" href="/users/register"> Register</a></li>
-                  <li><a class="mx-2 bg-white text-dark text-decoration-none rounded p-2" href="/users/login"> Login</a></li>
-                </li>  
+                
+                  <% if (user) { %>
+                    <li class="nav nav-bar dropdown dropleft show">
+                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <%= user.username %>
+                      </a>
+                    
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="/users/logout">logout</a>
+                      </div>
+                    </li>
+                    <% } else {%>
+                      <li><a class="mx-2 bg-white text-dark text-decoration-none rounded p-2" href="/users/register"> Register</a></li>
+                      <li><a class="mx-2 bg-white text-dark text-decoration-none rounded p-2" href="/users/login"> Login</a></li>
+                    <% } %>
+                  <% if (user && user.admin == 1) { %>   
+                    <li><a class="m-2 bg-white text-dark text-decoration-none rounded p-2" href="/admin/pages">Admin Panel</a></li> 
+                  <% }%>  
               </ul>
             </div>
         </nav>
