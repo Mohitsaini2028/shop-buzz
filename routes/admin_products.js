@@ -5,7 +5,7 @@ const fs = require('fs-extra');
 var resizeImg = require('resize-img');
 const auth = require('../config/auth');
 var isAdmin = auth.isAdmin;
-const path = require('path');
+var path = require('path');
 var publicPath = path.join(path.dirname(__dirname),'public');
 // console.log("STATIC FOlder",express.static, publicPath,"dirname");
 // Get Product model
@@ -67,8 +67,8 @@ router.post('/add-product', function (req, res) {
     req.checkBody('title', 'Title must have a value.').notEmpty();
     req.checkBody('desc', 'Description must have a value.').notEmpty();
     req.checkBody('subCategory', 'Sub category must have a value.').notEmpty();
-    req.checkBody('originalPrice', 'Price must have a value.').isDecimal(); 
-    req.checkBody('discountedPrice', 'Price must have a value.').isDecimal(); 
+    req.checkBody('originalPrice', 'originalPrice must have a value.').isDecimal(); 
+    req.checkBody('discountedPrice', 'discountedPrice must have a value.').isDecimal(); 
     req.checkBody('inStock', 'In Stock must have a value.').isDecimal(); 
     req.checkBody('image', 'You must upload an image').isImage(imageFile);
     

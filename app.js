@@ -133,6 +133,7 @@ const adminProducts = require('./routes/admin_products.js');
 const products = require('./routes/products.js');
 const cart = require('./routes/cart.js');
 const user = require('./routes/users.js');
+const search = require('./routes/search.js');
 
 
 app.use('/admin/pages', adminpages);
@@ -141,6 +142,7 @@ app.use('/admin/products', adminProducts);
 app.use('/products', products);
 app.use('/cart', cart);
 app.use('/users', user);
+app.use('/search', search);
 app.use('/', pages);
 
 

@@ -70,7 +70,7 @@
               
               
 
-                  <% if (user) { %>
+                  <% if (locals.user) { %>
                     <li class="nav nav-bar dropdown dropleft show">
                       <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <%= user.username %>
@@ -84,7 +84,7 @@
                       <li><a class="mx-2 bg-white text-dark text-decoration-none rounded p-2" href="/users/register"> Register</a></li>
                       <li><a class="mx-2 bg-white text-dark text-decoration-none rounded p-2" href="/users/login"> Login</a></li>
                     <% } %>
-                  <% if (user && user.admin == 1) { %>   
+                  <% if (locals.user && locals.user.admin == 1) { %>   
                     <li><a class="m-2 bg-white text-dark text-decoration-none rounded p-2" href="/admin/pages">Admin Panel</a></li> 
                   <% }%>  
               </ul>
@@ -126,3 +126,5 @@
             <% }%>
                 <div class="col-xs-8 col-md-8">
               
+
+<%- include('products_card.ejs'); %>

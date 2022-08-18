@@ -15,7 +15,8 @@ const Category = require('../models/category');
 /*
  * GET all products/
  */
-router.get('/', isUser, function (req, res) {
+router.get('/', function (req, res) {
+// router.get('/', isUser, function (req, res) {
 
     Product.find(function (err, products) {
         if (err)
