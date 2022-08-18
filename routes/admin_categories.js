@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 // var auth = require('../config/auth');
 // var isAdmin = auth.isAdmin;
 
 // Get Category model
-var Category = require('../models/category');
+const Category = require('../models/category');
 
 /*
  * GET category index

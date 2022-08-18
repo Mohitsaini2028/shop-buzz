@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
-var bcrypt = require('bcryptjs');
+const express = require('express');
+const router = express.Router();
+const passport = require('passport');
+const bcrypt = require('bcryptjs');
 
 // Get Users model
-var User = require('../models/user');
+const User = require('../models/user');
 
 /*
  * GET register

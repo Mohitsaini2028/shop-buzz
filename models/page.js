@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // Page Schema
-var PageSchema = mongoose.Schema({
+const PageSchema = mongoose.Schema({
    
     title: {
         type: String,
@@ -20,5 +20,5 @@ var PageSchema = mongoose.Schema({
     
 });
 
-var Page = module.exports = mongoose.model('Page', PageSchema);
+const Page = module.exports = mongoose.model('Page', PageSchema);
 

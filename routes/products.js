@@ -1,19 +1,21 @@
-var express = require('express');
-var router = express.Router();
-var mongoose = require('mongoose');
-var fs = require('fs-extra');
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose');
+const fs = require('fs-extra');
+const auth = require('../config/auth');
+var isUser = auth.isUser;
 
 // Get Page model
 // var Product = require('../models/Product');
-var Product = mongoose.model('Product')
+const Product = mongoose.model('Product')
 
 // Get Category model
-var Category = require('../models/category');
+const Category = require('../models/category');
 
 /*
- * GET /
+ * GET all products/
  */
-router.get('/', function (req, res) {
+router.get('/', isUser, function (req, res) {
 
     Product.find(function (err, products) {
         if (err)

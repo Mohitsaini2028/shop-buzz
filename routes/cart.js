@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 // Get Product model
-var Product = require('../models/product');
+const Product = require('../models/product');
 
 /*
  * GET add product to cart

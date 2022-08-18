@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 // var auth = require('../config/auth');
 // var isAdmin = auth.isAdmin;
 
 // Get Page model
-var Page = require('../models/page');
+const Page = require('../models/page');
 
 /*
  * GET pages index

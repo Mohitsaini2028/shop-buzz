@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // Category Schema
-var CategorySchema = mongoose.Schema({
+const CategorySchema = mongoose.Schema({
    
     title: {
         type: String,
@@ -13,5 +13,5 @@ var CategorySchema = mongoose.Schema({
     
 });
 
-var Category = module.exports = mongoose.model('Category', CategorySchema);
+const Category = module.exports = mongoose.model('Category', CategorySchema);
 

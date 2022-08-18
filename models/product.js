@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // Product Schema
-var ProductSchema = mongoose.Schema({
+const ProductSchema = mongoose.Schema({
    
     title: {
         type: String,
@@ -48,5 +48,5 @@ var ProductSchema = mongoose.Schema({
     
 });
 
-var Product = module.exports = mongoose.model('Product', ProductSchema);
+const Product = module.exports = mongoose.model('Product', ProductSchema);
 

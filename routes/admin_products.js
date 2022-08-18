@@ -1,18 +1,18 @@
-var express = require('express');
-var router = express.Router();
-var mkdirp = require('mkdirp');
-var fs = require('fs-extra');
+const express = require('express');
+const router = express.Router();
+const mkdirp = require('mkdirp');
+const fs = require('fs-extra');
 var resizeImg = require('resize-img');
-// var auth = require('../config/auth');
-// var isAdmin = auth.isAdmin;
-var path = require('path');
+const auth = require('../config/auth');
+var isAdmin = auth.isAdmin;
+const path = require('path');
 var publicPath = path.join(path.dirname(__dirname),'public');
 // console.log("STATIC FOlder",express.static, publicPath,"dirname");
 // Get Product model
-var Product = require('../models/product');
+const Product = require('../models/product');
 
 // Get Category model
-var Category = require('../models/category');
+const Category = require('../models/category');
 
 /*
  * GET products index

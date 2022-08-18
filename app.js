@@ -1,12 +1,12 @@
-var express = require('express');
-var path = require('path');
+const express = require('express');
+const path = require('path');
 const port = process.env.PORT || 3000;
 require('dotenv').config()
-var config = require('./config/database');
-var session = require('express-session');
-var expressValidator = require('express-validator');
-var fileUpload = require('express-fileupload');
-var passport = require('passport');
+const config = require('./config/database');
+const session = require('express-session');
+const expressValidator = require('express-validator');
+const fileUpload = require('express-fileupload');
+const passport = require('passport');
 // const multer = require('multer');
 // const storage = multer.diskStorage({
 //     destination: cb(null, '')                                //callback function
@@ -14,7 +14,7 @@ var passport = require('passport');
 
 
 // Initialize app
-var app = express();
+const app = express();
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.locals.errors = null;
 
 // Get Page Model
-var Page = require('./models/page');
+const Page = require('./models/page');
 
 // Get all pages to pass to header.ejs
 Page.find({}).sort({sorting: 1}).exec(function (err, pages) {
@@ -39,7 +39,7 @@ Page.find({}).sort({sorting: 1}).exec(function (err, pages) {
 });
 
 // Get Category Model
-var Category = require('./models/category');
+const Category = require('./models/category');
 
 // Get all categories to pass to header.ejs
 Category.find(function (err, categories) {
@@ -126,13 +126,13 @@ app.get('*', function(req,res,next) {
  });
 
 // Set routes
-var pages = require('./routes/pages.js');
-var adminpages = require('./routes/admin_pages.js');
-var adminCategories = require('./routes/admin_categories.js');
-var adminProducts = require('./routes/admin_products.js');
-var products = require('./routes/products.js');
-var cart = require('./routes/cart.js');
-var user = require('./routes/users.js');
+const pages = require('./routes/pages.js');
+const adminpages = require('./routes/admin_pages.js');
+const adminCategories = require('./routes/admin_categories.js');
+const adminProducts = require('./routes/admin_products.js');
+const products = require('./routes/products.js');
+const cart = require('./routes/cart.js');
+const user = require('./routes/users.js');
 
 
 app.use('/admin/pages', adminpages);
