@@ -9,12 +9,13 @@ const Page = require('../models/page');
  */
 router.get('/', function (req, res) {
 
-    // res.render('index');
+
     Page.findOne({slug: 'home'}, function (err, page) {
         if (err)
             console.log(err);
 
-            return res.render('index', {
+            // return res.render('index', {
+            return res.render('home', {
             title: page.title,
             content: page.content
         });

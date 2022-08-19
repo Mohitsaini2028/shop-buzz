@@ -53,13 +53,13 @@
                 </div>
                 <button type="submit" class="btn btn-primary ml-2">
                   <!-- <i class="fas fa-search"></i> -->
-                  se
+                  🔍
                 </button>
-                </form>
+                </form> 
               
-              <ul class="nav nav-bar ml-auto mr-4">
+              <ul class="nav nav-bar ml-auto">
                 <li>
-                  <a class="bg-info text-decoration-none text-white rounded p-2" href="/cart/checkout">Cart (
+                  <a class="bg-info text-decoration-none text-white rounded p-2 m-2" href="/cart/checkout">Cart (
                     <% if (typeof cart !== "undefined") { %>
                     <%= cart.length %>
                     <% } else {%>
@@ -103,7 +103,8 @@
                 <% });%>
             <% }%>
     
-            <% if (title!="Register") {%> 
+            <% if(title!="Home") {%>
+            <% if (title!="Register" && title!="Login") {%> 
             <div class="row">
                 <div class="col-md-2">
                     <h3>Categories</h3>
@@ -120,9 +121,27 @@
                               <li class="list-group-item"><a href="/products/<%= c.slug %>"><%= c.title %></a></li>
                           <% }; %>
                       <% }); %>
+
+                    <form action="" id="filter_form" class="list-group mt-2">
+                      <span class="max">Max</span>
+                      <input type="number"  id="max" class="max bg-dark text-light rounded" />
+                      <span class="max">Min</span>
+                      <input type="number" id="min" class="min bg-dark text-light rounded" />
+                      <button type="submit" class="btn btn-primary mt-2">filter</button>
+                     </form> 
+
+
+                    
                 </div>
+
+                
               
-                <div class="col-xs-12 col-md-1"></div>
+                <div class="col-xs-12 col-md-1">
+                  
+                </div>
             <% }%>
                 <div class="col-xs-8 col-md-8">
+            <% }%>
+
+             
               

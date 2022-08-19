@@ -17,7 +17,7 @@ const Category = require('../models/category');
  */
 router.get('/', function (req, res) {
 // router.get('/', isUser, function (req, res) {
-
+    console.log(req.query.max, req.query.min);
     Product.find(function (err, products) {
         if (err)
             console.log(err);

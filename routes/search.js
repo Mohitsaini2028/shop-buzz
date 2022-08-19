@@ -37,7 +37,8 @@ router.post('/', async function (req, res) {
 
             return res.render('search_product', {
                 title: "Search Result",
-                products: products
+                products: products,
+                searchTerm: searchTerm,
             });
      
  
