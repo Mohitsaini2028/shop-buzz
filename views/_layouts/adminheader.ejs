@@ -33,8 +33,23 @@
             <a class="nav-link" href="/admin/products">Products</a>
           </li>
         </ul>
+
+        <% if (user) { %>
+          <li class="nav nav-bar dropdown dropleft show ml-auto">
+            <a class="btn btn-warning dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= user.username %>
+            </a>
+          
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/users/logout">logout</a>
+            </div>
+          </li>
+          <% } else {%>
+
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/users/logout">Logout</a></li>
+
+          <% } %>
        </ul>
       </div>
     </nav>

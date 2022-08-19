@@ -6,46 +6,62 @@
 
 <% if (count > 0) { %>
 
-<table class="table table-striped alignmiddle">
 
-    <thead>
-        <tr class="home bg-col">
-            <th>Product</th>
-            <th>Original Price</th>
-            <th>Discounted Price</th>
-            <th>Category</th>
-            <th>Sub category</th>
-            <th>Instock</th>
-            <th>Product Image</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% products.forEach(function(product){ %>
-        <tr>
-            <td><%= product.title %></td>
-            <td>$<%= parseFloat(product.originalPrice).toFixed(2) %></td>
-            <td>$<%= parseFloat(product.discountedPrice).toFixed(2) %></td>
-            <td><%= product.category %></td>
-            <td><%= product.subCategory %></td>
-            <td><%= product.inStock %></td>
-            <td>
-                <% if (product.image == "") { %>
-                <img id="noimage" src="/images/noimage.png">
-                <% } else {%>
-                <img id="noimage" src="/product_images/<%= product._id %>/<%= product.image %>">
-                <% }%>
-            </td>
-            <td><a href="/admin/products/edit-product/<%= product._id %>">Edit</a></td>
-            <td><a class="confirmDeletion" href="/admin/products/delete-product/<%= product._id %>">Delete</a></td>
-        </tr>
-        <% }); %>
-    </tbody>
-</table>
+
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <h3 class="box-title">Basic Table</h3>
+                <p class="text-muted">Add class <code>.table</code></p>
+                <div class="table-responsive">
+                    <table class="table text-nowrap alignmiddle">
+                        <thead>
+                            <tr>
+                                <th class="border-top-0">Product</th>
+                                <th class="border-top-0">Original Price</th>
+                                <th class="border-top-0">Discounted Price</th>
+                                <th class="border-top-0">Category</th>
+                                <th class="border-top-0">Sub category</th>
+                                <th class="border-top-0">Instock</th>
+                                <th class="border-top-0">Product Image</th>
+                                <th class="border-top-0">Edit</th>
+                                <th class="border-top-0">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% products.forEach(function(product){ %>
+                                <tr>
+                                    <td><%= product.title.slice(0, 10) %></td>
+                                    <td>$<%= parseFloat(product.originalPrice).toFixed(2) %></td>
+                                    <td>$<%= parseFloat(product.discountedPrice).toFixed(2) %></td>
+                                    <td><%= product.category %></td>
+                                    <td><%= product.subCategory %></td>
+                                    <td><%= product.inStock %></td>
+                                    <td>
+                                        <% if (product.image == "") { %>
+                                        <img id="noimage" src="/images/noimage.png">
+                                        <% } else {%>
+                                        <img id="noimage" src="/product_images/<%= product._id %>/<%= product.image %>">
+                                        <% }%>
+                                    </td>
+                                    <td><a href="/admin/products/edit-product/<%= product._id %>">Edit</a></td>
+                                    <td><a class="confirmDeletion" href="/admin/products/delete-product/<%= product._id %>">Delete</a></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <% } else {%>
 <h3 class="text-center">No products to display.</h3>
 <% }%>
+
 
 <%- include('../_layouts/adminfooter') %>

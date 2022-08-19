@@ -1,3 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+
+/* 
+---------------------------------------------
+global styles
+--------------------------------------------- 
+*/
+
+html,
+body{
+    font-family: 'Poppins', sans-serif; 
+}
+
 :root{
     --bg-col: #ffede7;
     /* --bg-col: rgba(0, 0, 0, 0.2); */
