@@ -11,8 +11,10 @@ router.get('/', function (req, res) {
 
 
     Page.findOne({slug: 'home'}, function (err, page) {
-        if (err)
+        if (err || !page){
             console.log(err);
+            return res.render('404');
+        }
 
             // return res.render('index', {
             return res.render('home', {
@@ -41,12 +43,14 @@ router.get('/:slug', function (req, res) {
     var slug = req.params.slug;
 
     Page.findOne({slug: slug}, function (err, page) {
-        if (err)
+        if (err){
             console.log(err);
+            // res.render('404');
+        }
         
         // if not is not present then redirect it to home.
         if (!page) {
-            res.redirect('/');
+            return res.render('404');
         } else {
             return res.render('index', {
                 title: page.title,

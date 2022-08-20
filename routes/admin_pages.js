@@ -12,9 +12,9 @@ const Page = require('../models/page');
 
 router.get('/', function(req,res){
     Page.find({}).sort({sorting: 1}).exec(function (err, pages) {
-        return res.render('admin/pages', {
-            pages: pages
-        });
+            return res.render('admin/pages', {
+                pages: pages
+            });
     });
     
 });
@@ -262,6 +262,9 @@ router.get('/delete-page/:id', function (req, res) {
     });
 });
 
+router.get('/:slug', function(req, res){
+    res.render('404.ejs');
+});
 
 // Exports
 module.exports = router;

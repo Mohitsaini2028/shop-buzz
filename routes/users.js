@@ -122,6 +122,11 @@ router.get('/logout', function(req, res){
       });
 });
 
+
+router.get('/:slug', function(req, res){
+    res.render('404.ejs');
+});
+
 // Exports
 module.exports = router;
 

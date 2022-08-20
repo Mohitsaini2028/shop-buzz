@@ -42,18 +42,29 @@ router.get('/:category', function (req, res) {
 
     var categorySlug = req.params.category;
 
-    Category.findOne({slug: categorySlug}, function (err, cat) {
+    try{
+
+        Category.findOne({slug: categorySlug}, function (err, cat) {
+            if (err || cat==undefined){
+                console.log("category not found", err);
+                return res.render('404');
+            }
         Product.find({category: categorySlug}, function (err, products) {
             if (err)
-                console.log(err);
-
+                return res.render('404');
+            
             return res.render('cat_products', {
                 title: cat.title,
                 products: products
             });
         });
     });
-
+    }
+    catch(err){
+        console.log("category error", err);
+        return res.render('404');
+    }
+    
 });
 
 router.get('/:category/:product', function (req, res) {
@@ -87,6 +98,9 @@ router.get('/:category/:product', function (req, res) {
 
 });
 
+router.get('/:slug', function(req, res){
+    res.render('404');
+});
 
 // Exports
 module.exports = router;

@@ -8,6 +8,7 @@
     /* --bg-admin: #0071c2; */
     --bg-admin: #003580;
     --bg-text: aliceblue;
+    --bs-gray: #8898aa;
 }
 
 .bg-col{
@@ -64,3 +65,27 @@ table{
     /* background-color: teal; */
     /* color:antiquewhite; */
 }  
+
+
+
+.container,
+.container-fluid,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl {
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-right: auto;
+  margin-left: auto; }
+
+
+.page-wrapper {
+    background: #eef5f9;
+    position: relative; }
+  
+  .page-wrapper > .container-fluid, .page-wrapper > .container-sm, .page-wrapper > .container-md, .page-wrapper > .container-lg, .page-wrapper > .container-xl {
+    padding: 20px;
+    min-height: calc(100vh - 180px); }
+  

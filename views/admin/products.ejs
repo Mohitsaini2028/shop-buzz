@@ -1,8 +1,12 @@
 <%- include('../_layouts/adminheader') %>
 
 <h2 class="page-title">Products</h2>
-<a href="/admin/products/add-product" class="btn btn-primary">Add a new product</a>
+<a href="/admin/products/add-product" class="bg-col rounded p-2">Add a new product</a>
 <br><br>
+
+<div>
+
+    
 
 <% if (count > 0) { %>
 
@@ -12,11 +16,11 @@
     <!-- ============================================================== -->
     <!-- Start Page Content -->
     <!-- ============================================================== -->
-    <div class="row">
+    <div class="row bg-white">
         <div class="col-sm-12">
             <div class="white-box">
-                <h3 class="box-title">Basic Table</h3>
-                <p class="text-muted">Add class <code>.table</code></p>
+                <h3 class="box-title">Products Detail</h3>
+                <p class="text-muted"><code>Admin panel</code></p>
                 <div class="table-responsive">
                     <table class="table text-nowrap alignmiddle">
                         <thead>
@@ -35,7 +39,7 @@
                         <tbody>
                             <% products.forEach(function(product){ %>
                                 <tr>
-                                    <td><%= product.title.slice(0, 10) %></td>
+                                    <td><%= product.title.slice(0, 20) %></td>
                                     <td>$<%= parseFloat(product.originalPrice).toFixed(2) %></td>
                                     <td>$<%= parseFloat(product.discountedPrice).toFixed(2) %></td>
                                     <td><%= product.category %></td>
@@ -60,6 +64,7 @@
     </div>
 
 <% } else {%>
+
 <h3 class="text-center">No products to display.</h3>
 <% }%>
 
