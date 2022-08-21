@@ -1,30 +1,51 @@
 <%- include ('../_layouts/adminheader'); %>
-<h2 class="page-title">Pages</h2>
-<a href="/admin/pages/add-page" class="bg-col rounded p-2">Add a new pages</a>
+<h2 class="page-title"><code>Admin panel</code></h2>
+<div class="text-center mt-5">
+  <a href="/admin/pages/add-page" class="bg-col rounded p-2">Add a new pages</a>
+</div>
 <br><br>
 
-<table class="table table-striped sorting">
-    <thead class="thead bg-col">
-      <tr class="home">
-        <th scope="col">Title</th>
-        <th scope="col">Edit</th>
-        <th scope="col">Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-        <% pages.forEach(function(page){ %>
-            <tr id="id_<%= page._id %>" class="<%= page.slug %>">
-                <td><%= page.title %></td>
-                <td><a href="/admin/pages/edit-page/<%= page._id %>">Edit</a></td>
-                <% if (page.slug == "home") { %>
-                <td class="text-danger">NA</td>
-                <% }  else {%>
-                <td><a class="confirmDeletion" href="/admin/pages/delete-page/<%= page._id %>">Delete</a></td>
-                <% }%>
-            </tr>
-            <% }); %>
-    </tbody>
-  </table>
+
+
+<div class="container-fluid">
+  <!-- ============================================================== -->
+  <!-- Start Page Content -->
+  <!-- ============================================================== -->
+  <div class="row bg-white">
+      <div class="col-sm-12">
+          <div class="white-box">
+              <h3 class="box-title">Page Detail</h3>
+              <p class="text-muted">you can perform the add, edit and update page operation.</p>
+              <div class="table-responsive shadow-lg">
+                  <table class="table text-nowrap alignmiddle">
+                      <thead class="bg-col">
+                          <tr>
+                              <th class="border-top-0">Title</th>
+                              <th class="border-top-0">Edit</th>
+                              <th class="border-top-0">Delete </th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <% pages.forEach(function(page){ %>
+                            <tr id="id_<%= page._id %>" class="<%= page.slug %>">
+                                <td><%= page.title %></td>
+                                <td><a href="/admin/pages/edit-page/<%= page._id %>">Edit</a></td>
+                                <% if (page.slug == "home") { %>
+                                <td class="text-danger">NA</td>
+                                <% }  else {%>
+                                <td><a class="confirmDeletion" href="/admin/pages/delete-page/<%= page._id %>">Delete</a></td>
+                                <% }%>
+                              </tr>
+                              <% }); %>
+                      </tbody>
+                   </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div>
 
   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
   <script>

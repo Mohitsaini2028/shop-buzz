@@ -81,15 +81,9 @@
                                     <p><%= p._id %></p>
                                     <input id="star-rating-<%= p._id %>" type="text" class="rating" data-size="xs" >
                                 </div>   
-                                <!-- <div class="">
-                                    
-                                    <span class="item-size mr-2 btn" type="button">S</span>
-                                    <span class="item-size mr-2 btn" type="button">M</span>
-                                    <span class="item-size btn" type="button">L</span>
-
-                                </div>-->
+    
                                 
-                            <!-- </div>  -->
+                            
                             
                             <div class="d-flex justify-content-between align-items-center pt-1">
                                 <div>
@@ -109,26 +103,23 @@
                     
                     </div>
                     
-                    
+            <a href="/products/<%= p.category %>/<%= p.slug %>">    
                 <div class="mt-3">
                     <div class="card voutchers">
                         
                         <div class="voutcher-divider">
                             <div class="voutcher-left text-center">
                                 <span class="voutcher-name"><%= p.category.toUpperCase() %></span>
-                                <h5 class="voutcher-code">#<%= p.subCategory %></h5>
-                                
+                                <h5 class="voutcher-code">#<%= p.subCategory %></h5>   
                             </div>
                             <div class="voutcher-right text-center border-left">
                                 <h5 class="discount-percent"> <%= (100 * (Number(p.originalPrice) - Number(p.discountedPrice))/Number(p.originalPrice)).toFixed(0) %>%</h5>
-                                <span class="off">Off</span>
-                                
+                                <span class="off">Off</span>  
                             </div>          
-                        </div>
-                        
+                        </div>   
                     </div>
-                    
                 </div>
+            </a>
             
         </div>
         <% } %>
@@ -173,7 +164,7 @@ $("#input1, #input2").click(function() {
     
     
     if(slug=='All products'){
-        console.log("submit ji", max, min);
+        console.log("submit", max, min);
         // $('#filter_form').action = `/products?max=${max}&?min=${min}`;
         $('#filter_form').attr('action', '/products?max=45&?min=33');
         

@@ -1,5 +1,18 @@
 <%- include('_layouts/header.ejs'); %>
 
+<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+
+<!-- with v4.1.0 Krajee SVG theme is used as default (and must be loaded as below) - include any of the other theme CSS files as mentioned below (and change the theme property of the plugin) -->
+<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
+
+<!-- important mandatory libraries -->
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/star-rating.min.js" type="text/javascript"></script>
+
+<!-- with v4.1.0 Krajee SVG theme is used as default (and must be loaded as below) - include any of the other theme JS files as mentioned below (and change the theme property of the plugin) -->
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/themes/krajee-svg/theme.js"></script>
+
+
+
 <div class="row">
     
     <h1 class="page-header"><%= p.title %></h1>
@@ -22,12 +35,50 @@
             </div>
         </div> 
         
-            <% if (loggedIn) { %>
-        <p><a class="bg-dark text-decoration-none text-warning p-2 rounded" href="/cart/add/<%= p.slug %>">Add to cart <i class="fa-solid fa-cart-arrow-down"></i></a></p>
+        <% if (loggedIn) { %>
+            <p><a class="bg-dark text-decoration-none text-warning p-2 rounded" href="/cart/add/<%= p.slug %>">Add to cart <i class="fa-solid fa-cart-arrow-down"></i></a></p>
         <% } else {%>
-        <p>You must be logged in to purchase items.</p>
+            <p>You must be logged in to purchase items.</p>
         <% } %>
+
+
+
+        <!-- Review Modal starts -->
+ <!-- Button trigger modal -->
+ <button type="button" class="btn btn-info" data-toggle="modal" data-target="#reviewModal">
+    <%= p.rating %> ⭐
+</button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="reviewModalCenter">Review product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="/products/review/<%= p._id %>" method="post" class="modal-body">
+            <div class="flex">
+                <%= p._id %>
+                <input id="star-rating-<%= p._id %>" type="text" name="rating" class="rating" data-size="lg" >
+            </div>   
+            
+            <div class="form-group">
+                <label for="ReviewTextarea">Review</label>
+                <textarea class="form-control" id="ReviewTextarea" name="review" rows="3"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Review</button>
+            </form>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
+  </div>
+        <!-- Review Modal ends -->
+
     <div class="col-xs-12">
         <ul class="gallery">
             <% galleryImages.forEach(function(image){ %>
@@ -42,5 +93,23 @@
         </ul>
     </div>
 </div>
+
+
+<div class="container mt-5 border">
+    <h2>Product Reviews</h2>
+<div>  
+
+
+<script>
+    
+    $("#star-rating").rating();
+
+    // with plugin options (do not attach the CSS class "rating" to your input if using this approach)
+    $("#star-rating").rating({'size':'lg'});
+
+    console.log($("#star-rating-6300a8cacc6e3cae7bb363d9").val());
+
+</script>
+
 
 <%- include('_layouts/footer.ejs'); %>

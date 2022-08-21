@@ -1,19 +1,13 @@
 <%- include('../_layouts/adminheader') %>
 
-<h2 class="page-title"><code>Admin panel</code></h2>
+<h2 class="page-title mt-5"><code>Admin panel</code></h2>
 <div class="text-center">
     <a href="/admin/products/add-product" class="bg-col rounded p-2">Add a new product</a>
-</div>   
+</div>
 <br><br>
-
-
-<div>
-
 
 <% if (count > 0) { %>
     
-    
-
 <div class="container-fluid">
     <!-- ============================================================== -->
     <!-- Start Page Content -->
@@ -25,7 +19,7 @@
                 <p class="text-muted">you can perform the add, edit and update product operation</p>
                 <div class="table-responsive shadow-lg">
                     <table class="table text-nowrap alignmiddle">
-                        <thead>
+                        <thead class="bg-col">
                             <tr>
                                 <th class="border-top-0">Product</th>
                                 <th class="border-top-0">Original Price</th>
@@ -63,14 +57,17 @@
                 </div>
             </div>
         </div>
-    </div>
-    
-   
-    
+    </div>    
+</div>
+        
     <% } else {%>
 
 <h3 class="text-center">No products to display.</h3>
 <% }%>
+</div>
+
+
+
 
 
 <%- include('../_layouts/adminfooter') %>

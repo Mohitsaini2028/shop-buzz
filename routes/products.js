@@ -11,6 +11,7 @@ const Product = mongoose.model('Product')
 
 // Get Category model
 const Category = require('../models/category');
+const Review = require('../models/review');
 
 /*
  * GET all products/
@@ -98,8 +99,49 @@ router.get('/:category/:product', function (req, res) {
 
 });
 
-router.get('/:slug', function(req, res){
-    res.render('404');
+
+router.post('/review/:productId', async function (req, res) {
+
+    var rating = parseInt(req.body.rating);
+    var reviewText = req.body.review;
+    var pId = req.params.productId;
+    product = await Product.findById(pId);
+
+    
+    console.log(typeof rating);
+    console.log((product.ratingCount*product.rating + rating));
+    console.log((product.ratingCount + 1));
+    console.log((product.ratingCount*product.rating + rating)/(product.ratingCount + 1));
+    // 
+    product.rating = ((product.ratingCount*product.rating + rating)/(product.ratingCount + 1)).toFixed(2);
+    product.ratingCount += 1; 
+
+    
+    product.save(function (err) {
+        if (err)
+        return console.log(err);
+    })  
+
+
+    // 2*4 + 4.5 /  2 + 1
+
+    var review = new Review({
+        product: product._id ,
+        user: req.user,
+        rating: rating,
+        review: reviewText
+    });
+
+    review.save(function (err) {
+        if (err)
+        return console.log(err);
+    })  
+        
+
+    return res.redirect('/products/');
+    // console.log(req.body.rating, req.body.review, req.params.productId);
+    // return res.json();
+
 });
 
 // Exports

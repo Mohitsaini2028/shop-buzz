@@ -22,14 +22,18 @@ router.get('/', function (req, res) {
 
     Product.count(function (err, c) {
         count = c;
+
+        Product.find(function (err, products) {
+            // console.log(count);
+            return res.render('admin/products', {
+                products: products,
+                count: count
+            });
+        });
+        
     });
 
-    Product.find(function (err, products) {
-        return res.render('admin/products', {
-            products: products,
-            count: count
-        });
-    });
+
 });
 
 /*

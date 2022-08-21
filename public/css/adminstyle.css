@@ -9,6 +9,7 @@
     --bg-admin: #003580;
     --bg-text: aliceblue;
     --bs-gray: #8898aa;
+    --light-blue: #cff;
 }
 
 .bg-col{
@@ -25,6 +26,7 @@
     color: rgb(255, 14, 14);
     text-decoration: none;
 }
+
 .sorting tr:not(.home) {
     cursor: pointer;
 }

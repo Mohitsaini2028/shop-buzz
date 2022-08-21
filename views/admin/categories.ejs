@@ -1,27 +1,49 @@
 <%- include('../_layouts/adminheader') %>
 
-<h2 class="page-title">Categories</h2>
-<a href="/admin/categories/add-category" class="bg-col rounded p-2">Add a new category</a>
+<h2 class="page-title"><code>Admin panel</code></h2>
+<div class="text-center mt-5">
+    <a href="/admin/categories/add-category" class="bg-col rounded p-2">Add a new category</a>
+</div>
 <br><br>
 
-<table class="table table-striped">
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row bg-white">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <h3 class="box-title">Categories Detail</h3>
+                <p class="text-muted">you can perform the add, edit and update category operation.</p>
+                <div class="table-responsive shadow-lg">
+                    <table class="table text-nowrap alignmiddle">
+                        <thead class="bg-col">
+                            <tr>
+                                <th class="border-top-0">Category</th>
+                                <th class="border-top-0">Edit</th>
+                                <th class="border-top-0">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% categories.forEach(function(cat){ %>
+                            <tr>
+                                <td><%= cat.title %></td>
+                                <td><a href="/admin/categories/edit-category/<%= cat._id %>">Edit</a></td>
+                                <td><a class="confirmDeletion" href="/admin/categories/delete-category/<%= cat._id %>">Delete</a></td>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <thead class="thead bg-col">
-        <tr>
-            <th>Category</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% categories.forEach(function(cat){ %>
-        <tr>
-            <td><%= cat.title %></td>
-            <td><a href="/admin/categories/edit-category/<%= cat._id %>">Edit</a></td>
-            <td><a class="confirmDeletion" href="/admin/categories/delete-category/<%= cat._id %>">Delete</a></td>
-        </tr>
-        <% }); %>
-    </tbody>
-</table>
+
+</div>
+</div>
+
+
 
 <%- include('../_layouts/adminfooter') %>
