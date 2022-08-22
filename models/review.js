@@ -19,7 +19,7 @@ const ReviewSchema = mongoose.Schema({
         required: true
     }
     
-});
+},{ timestamps: true });
 
 const User = module.exports = mongoose.model('Review', ReviewSchema);
 

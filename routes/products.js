@@ -12,6 +12,7 @@ const Product = mongoose.model('Product')
 // Get Category model
 const Category = require('../models/category');
 const Review = require('../models/review');
+const review = require('../models/review');
 
 /*
  * GET all products/
@@ -67,7 +68,7 @@ router.get('/:category', function (req, res) {
     }
     
 });
-
+ 
 router.get('/:category/:product', function (req, res) {
 
     var galleryImages = null;
@@ -80,17 +81,19 @@ router.get('/:category/:product', function (req, res) {
         } else {
             var galleryDir = 'public/product_images/' + product._id + '/gallery';
 
-            fs.readdir(galleryDir, function (err, files) {
+            fs.readdir(galleryDir,async function (err, files) {
                 if (err) {
                     console.log(err);
                 } else {
                     galleryImages = files;
 
+                    var reviews = await Review.find({product: product._id}).populate("user");
                     res.render('product', {
                         title: product.title,
                         p: product,
                         galleryImages: galleryImages,
-                        loggedIn: loggedIn
+                        loggedIn: loggedIn,
+                        reviews: reviews
                     });
                 }
             });
