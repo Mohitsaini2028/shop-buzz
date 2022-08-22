@@ -8,14 +8,6 @@ const expressValidator = require('express-validator');
 const fileUpload = require('express-fileupload');
 const passport = require('passport');
 
-
-
-// const multer = require('multer');
-// const storage = multer.diskStorage({
-//     destination: cb(null, '')                                //callback function
-// })
-
-
 // Initialize app
 const app = express();
 

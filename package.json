@@ -1,10 +1,10 @@
 {
-  "name": "y",
+  "name": "shopbuzz",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -14,6 +14,7 @@
     "body-parser": "^1.20.0",
     "bootstrap-star-rating": "^4.1.2",
     "connect-flash": "^0.1.1",
+    "cookie-session": "^2.0.0",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
@@ -31,5 +32,8 @@
     "passport-local": "^1.0.0",
     "resize-img": "^2.0.0",
     "serve-favicon": "^2.5.0"
+  },
+  "engines": {
+    "node": "16.13.2"
   }
 }
