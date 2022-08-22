@@ -12,7 +12,6 @@ const Product = mongoose.model('Product')
 // Get Category model
 const Category = require('../models/category');
 const Review = require('../models/review');
-const review = require('../models/review');
 
 /*
  * GET all products/
@@ -53,8 +52,8 @@ router.get('/:category', function (req, res) {
             }
         Product.find({category: categorySlug}, function (err, products) {
             if (err)
-                return res.render('404');
-            
+                console.log(err);
+                            
             return res.render('cat_products', {
                 title: cat.title,
                 products: products
@@ -64,6 +63,7 @@ router.get('/:category', function (req, res) {
     }
     catch(err){
         console.log("category error", err);
+        console.log(err);
         return res.render('404');
     }
     

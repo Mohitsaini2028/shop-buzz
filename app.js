@@ -8,6 +8,8 @@ const expressValidator = require('express-validator');
 const fileUpload = require('express-fileupload');
 const passport = require('passport');
 
+
+
 // Initialize app
 const app = express();
 
@@ -15,11 +17,9 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
 // Favicon setup
 var favicon = require('serve-favicon');
 app.use(favicon(path.join(__dirname, '/public', 'shopping-cart.ico')));
-
 
 // Set public folder
 app.use(express.static(path.join(__dirname, 'public')));
