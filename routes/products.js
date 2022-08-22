@@ -51,8 +51,10 @@ router.get('/:category', function (req, res) {
                 return res.render('404');
             }
         Product.find({category: categorySlug}, function (err, products) {
-            if (err)
+            if (err){
                 console.log(err);
+                var products = null 
+            }
                             
             return res.render('cat_products', {
                 title: cat.title,
@@ -79,6 +81,11 @@ router.get('/:category/:product', function (req, res) {
         if (err) {
             console.log(err);
         } else {
+            if(product===undefined || product===null){
+                console.log("product not found");
+                return res.render('404'); 
+            }
+
             var galleryDir = 'public/product_images/' + product._id + '/gallery';
 
             fs.readdir(galleryDir,async function (err, files) {
@@ -149,5 +156,3 @@ router.post('/review/:productId', async function (req, res) {
 
 // Exports
 module.exports = router;
-
-

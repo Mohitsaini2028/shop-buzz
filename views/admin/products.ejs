@@ -36,8 +36,8 @@
                             <% products.forEach(function(product){ %>
                                 <tr>
                                     <td><%= product.title.slice(0, 20) %></td>
-                                    <td>$<%= parseFloat(product.originalPrice).toFixed(2) %></td>
-                                    <td>$<%= parseFloat(product.discountedPrice).toFixed(2) %></td>
+                                    <td>Rs.<%= parseFloat(product.originalPrice).toFixed(2) %></td>
+                                    <td>Rs.<%= parseFloat(product.discountedPrice).toFixed(2) %></td>
                                     <td><%= product.category %></td>
                                     <td><%= product.subCategory %></td>
                                     <td><%= product.inStock %></td>
