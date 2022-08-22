@@ -58,17 +58,18 @@
                 </form> 
               
               <ul class="nav nav-bar ml-auto">
-                <li>
-                  <a class="bg-info text-decoration-none text-white rounded p-2 m-2" href="/cart/checkout">Cart (
+                <li><a class="bg-info text-decoration-none text-white rounded p-2 m-2" href="/cart/checkout">Cart (
                     <% if (typeof cart !== "undefined") { %>
                     <%= cart.length %>
                     <% } else {%>
                     0
                     <% } %>
-                )</a>
-                </li>
+                )</a></li>
               
               
+                <% if (user && user.admin == 1) { %>   
+                  <li><a class="m-2 bg-white text-dark text-decoration-none rounded p-2" href="/admin/pages">Admin Panel</a></li> 
+                <% }%>  
 
                   <% if (user) { %>
                     <li class="nav nav-bar dropdown dropleft show">
@@ -84,9 +85,6 @@
                       <li><a class="mx-2 bg-white text-dark text-decoration-none rounded p-2" href="/users/register"> Register</a></li>
                       <li><a class="mx-2 bg-white text-dark text-decoration-none rounded p-2" href="/users/login"> Login</a></li>
                     <% } %>
-                  <% if (user && user.admin == 1) { %>   
-                    <li><a class="m-2 bg-white text-dark text-decoration-none rounded p-2" href="/admin/pages">Admin Panel</a></li> 
-                  <% }%>  
               </ul>
             </div>
         </nav>
