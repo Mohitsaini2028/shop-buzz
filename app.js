@@ -7,6 +7,9 @@ const session = require('express-session');
 const expressValidator = require('express-validator');
 const fileUpload = require('express-fileupload');
 const passport = require('passport');
+
+
+
 // const multer = require('multer');
 // const storage = multer.diskStorage({
 //     destination: cb(null, '')                                //callback function
@@ -19,6 +22,12 @@ const app = express();
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+
+// Favicon setup
+var favicon = require('serve-favicon');
+app.use(favicon(path.join(__dirname, '/public', 'shopping-cart.ico')));
+
 
 // Set public folder
 app.use(express.static(path.join(__dirname, 'public')));
