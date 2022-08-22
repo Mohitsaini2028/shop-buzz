@@ -7,7 +7,7 @@ const auth = require('../config/auth');
 var isAdmin = auth.isAdmin;
 var path = require('path');
 var publicPath = path.join(path.dirname(__dirname),'public');
-// console.log("STATIC FOlder",express.static, publicPath,"dirname");
+
 // Get Product model
 const Product = require('../models/product');
 
@@ -17,7 +17,7 @@ const Category = require('../models/category');
 /*
  * GET products index
  */
-router.get('/', function (req, res) {
+router.get('/', isAdmin, function (req, res) {
     var count;
 
     Product.count(function (err, c) {
@@ -39,7 +39,7 @@ router.get('/', function (req, res) {
 /*
  * GET add product
  */
-router.get('/add-product', function (req, res) {
+router.get('/add-product', isAdmin, function (req, res) {
 
     var title = "";
     var desc = "";
@@ -135,16 +135,10 @@ router.post('/add-product', function (req, res) {
                     image: imageFile
                 });
 
-                // try{
-
                     product.save(function (err) {
                         if (err)
                         return console.log(err);
-                //     console.log(" PRESENT 1");
-                    // mkdirp('public/product_images/' + product._id, function (err) {
-                    //     console.log("hi");
-                    //     return console.log(err);
-                    // });
+
 
 
                     mkdirp(publicPath + '/product_images/' + product._id).then(made =>{
@@ -172,44 +166,10 @@ router.post('/add-product', function (req, res) {
                         console.log(`directory created ${made}`));
 
                         console.log("imageFile",imageFile);
-
-
-                    //     // var path = publicPath + '/product_images/' + product._id + '/' + imageFile;
-                    //     // var path = publicPath + '\\product_images\\' + product._id + '\\' + imageFile;
-                    //     // var path = `D:/Mohit/nodejs/shop-buzz/public/product_images/${product._id}/${imageFile}`;
-                    //     // var path = `D:/Mohit/nodejs/shop-buzz/public/product_images/${product._id}/${imageFile}`;
-                    //     // var path = publicPath + '/product_images/' + product._id;
-                    //     // var path = path.join(__dirname+ '/../public', 'product_images/')+imageFile;
-                    //     // console.log(`path ${__dirname}/public/product_images/${imageFile}`);
-                    //     path = 'public/product_images/' + product._id + '/' + imageFile;
-                    
-                    
-                    
-                    
+                                        
                     req.flash('success', 'Product added!');
                     return res.redirect('/admin/products');
-                });
-            // }
-            // catch(error)
-            // {
-                //     return console.log(error);
-                //     req.flash('danger', 'Something went wrong!');
-            //     Category.find(function (err, categories) {
-                //         return res.render('admin/add_product', {
-            //             errors: errors,
-            //             title: title,
-            //             desc: desc,
-            //             categories: categories,
-            //             subCategory: subCategory,
-            //             originalPrice: originalPrice,
-            //             discountedPrice: discountedPrice,
-            //             inStock: inStock
-            //         });
-            //     });
-            
-            // }
-            
-            
+                });            
             }
         });
     }
@@ -219,7 +179,7 @@ router.post('/add-product', function (req, res) {
 /*
  * GET edit product
 */
-router.get('/edit-product/:id', function (req, res) {
+router.get('/edit-product/:id', isAdmin, function (req, res) {
 
     var errors;
 
@@ -385,7 +345,7 @@ router.post('/product-gallery/:id', function (req, res) {
 /*
  * GET delete image
  */
-router.get('/delete-image/:image', function (req, res) {
+router.get('/delete-image/:image', isAdmin, function (req, res) {
 
     var originalImage = 'public/product_images/' + req.query.id + '/gallery/' + req.params.image;
     var thumbImage = 'public/product_images/' + req.query.id + '/gallery/thumbs/' + req.params.image;
@@ -409,7 +369,7 @@ router.get('/delete-image/:image', function (req, res) {
 /*
  * GET delete product
  */
-router.get('/delete-product/:id', function (req, res) {
+router.get('/delete-product/:id', isAdmin, function (req, res) {
 
     var id = req.params.id;
     var path = 'public/product_images/' + id;

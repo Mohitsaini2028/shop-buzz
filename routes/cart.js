@@ -1,13 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
+const auth = require('../config/auth');
+var isUser = auth.isUser;
+
 // Get Product model
 const Product = require('../models/product');
 
 /*
  * GET add product to cart
  */
-router.get('/add/:product', function (req, res) {
+router.get('/add/:product', isUser, function (req, res) {
 
     var slug = req.params.product;
 
@@ -56,7 +59,7 @@ router.get('/add/:product', function (req, res) {
 /*
  * GET checkout page
  */
-router.get('/checkout', function (req, res) {
+router.get('/checkout', isUser, function (req, res) {
 
     if (req.session.cart && req.session.cart.length == 0) {
         delete req.session.cart;
@@ -73,7 +76,7 @@ router.get('/checkout', function (req, res) {
 /*
  * GET update product
  */
-router.get('/update/:product', function (req, res) {
+router.get('/update/:product', isUser, function (req, res) {
 
     var slug = req.params.product;
     var cart = req.session.cart;
@@ -111,7 +114,7 @@ router.get('/update/:product', function (req, res) {
 /*
  * GET clear cart
  */
-router.get('/clear', function (req, res) {
+router.get('/clear', isUser, function (req, res) {
 
     delete req.session.cart;
     
@@ -123,7 +126,7 @@ router.get('/clear', function (req, res) {
 /*
  * GET buy now
  */
-router.get('/buynow', function (req, res) {
+router.get('/buynow', isUser, function (req, res) {
 
     delete req.session.cart;
     
