@@ -21,12 +21,13 @@ router.get('/register', function (req, res) {
  * POST register
  */
 router.post('/register', function (req, res) {
-
+    console.log('register page');
     var name = req.body.name;
     var email = req.body.email;
     var username = req.body.username;
     var password = req.body.password;
     var password2 = req.body.password2;
+    var isAdmin  =  (req.body.userType =="admin") ? 1 : 0;
 
     req.checkBody('name', 'Name is required!').notEmpty();
     req.checkBody('email', 'Email is required!').isEmail();
@@ -56,7 +57,7 @@ router.post('/register', function (req, res) {
                     email: email,
                     username: username,
                     password: password,
-                    admin: 0
+                    admin: isAdmin
                 });
 
                 bcrypt.genSalt(10, function (err, salt) {

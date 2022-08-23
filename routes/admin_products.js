@@ -320,23 +320,30 @@ router.post('/edit-product/:id', function (req, res) {
 router.post('/product-gallery/:id', function (req, res) {
 
     var productImage = req.files.file;
+    console.log("product image",productImage); 
+
     var id = req.params.id;
     var path = 'public/product_images/' + id + '/gallery/' + req.files.file.name;
     var thumbsPath = 'public/product_images/' + id + '/gallery/thumbs/' + req.files.file.name;
 
+
+    try{
     productImage.mv(path, function (err) {
-        if (err)
-            console.log(err);
-        try{
+        if (err){
+            console.log("Image move error ",err);
+            return res.sendStatus(200);
+        }        
 
             resizeImg(fs.readFileSync(path), {width: 100, height: 100}).then(function (buf) {
                 fs.writeFileSync(thumbsPath, buf);
             });
-        }
-        catch(error){
-            console.log(error);
-        }
+        
+
     });
+    }catch(error){
+        console.log("resize error",error);
+        return res.sendStatus(200);
+    }
 
     return res.sendStatus(200);
 

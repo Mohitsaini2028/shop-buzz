@@ -25,7 +25,7 @@
         <p><span class="badge badge-secondary"><%= p.category.charAt(0).toUpperCase() + p.category.toLowerCase().slice(1)%></span> &nbsp <span class="badge badge-secondary"><%= p.subCategory %></span><p>
         <%- p.desc %>
         <h5 class="text-danger"> - <%= (100 * (Number(p.originalPrice) - Number(p.discountedPrice))/Number(p.originalPrice)).toFixed(0) %> % Discount</h5>
-        <p>$ M.R.P.:<strike> <%= parseFloat(p.originalPrice).toFixed(2) %></strike>     <b class="text-success h4"><%= parseFloat(p.discountedPrice).toFixed(2) %></b></p>
+        <p>Rs. M.R.P.:<strike> <%= parseFloat(p.originalPrice).toFixed(2) %></strike>     <b class="text-success h4"><%= parseFloat(p.discountedPrice).toFixed(2) %></b></p>
 
         <% if (p.inStock>0) { %>
             <h5>Inclusive of all taxes   <span class="badge badge-success">In stock<span></h6>

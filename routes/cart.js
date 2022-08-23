@@ -67,7 +67,9 @@ router.get('/checkout', isUser, function (req, res) {
     } else {
         res.render('checkout', {
             title: 'Checkout',
-            cart: req.session.cart
+            cart: req.session.cart,
+            p_key: process.env.PUBLISHABLE_KEY,
+            s_key: process.env.SECRET_KEY
         });
     }
 

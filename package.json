@@ -31,7 +31,8 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "resize-img": "^2.0.0",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "stripe": "^10.3.0"
   },
   "engines": {
     "node": "16.13.2"
