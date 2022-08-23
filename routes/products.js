@@ -147,8 +147,40 @@ router.post('/review/:productId', async function (req, res) {
         if (err)
         return console.log(err);
     })  
-        
+
+    req.flash('success', 'Review Added!');    
     return res.redirect(`/products/${product.category}/${product.slug}`);
+
+});
+
+
+router.get('/delete-review/:id/:prodId', isUser,async function (req, res) {
+
+    
+    
+    var product = await Product.findById(req.params.prodId);
+    
+    Review.findByIdAndRemove(req.params.id, function (err, review) {
+
+        if (err){
+            console.log(err);
+            req.flash('danger', 'Something went wrong!');
+            return res.redirect(`/products/${product.category}/${product.slug}`);
+        }
+
+        req.flash('success', 'Review deleted!');
+        try{
+            product.rating = ((product.ratingCount*product.rating - review.rating)/(product.ratingCount - 1)).toFixed(2);
+            product.ratingCount -= 1
+            product.save()
+            return res.redirect(`/products/${product.category}/${product.slug}`);
+        }
+        catch(err){
+            console.log(err);
+            req.flash('danger', 'Something went wrong!');
+            return res.redirect(`/products/${product.category}/${product.slug}`);
+            }
+    });
 
 });
 
