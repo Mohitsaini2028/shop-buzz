@@ -26,12 +26,9 @@
         <td>Rs. <%= product.price %></td>
         <td><%= product.qty %></td>
         <td>
-            <!-- <a class="text-decoration-none col-3 text-dark" href="/cart/update/<%= product.title %>?action=add"><i class="fa-solid fa-circle-plus"></i></a>&nbsp;
+            <a class="text-decoration-none col-3 text-dark" href="/cart/update/<%= product.title %>?action=add"><i class="fa-solid fa-circle-plus"></i></a>&nbsp; 
             <a class="text-decoration-none col-3 text-dark" href="/cart/update/<%= product.title %>?action=remove"><i class="fa-solid fa-circle-minus"></i></a>&nbsp;
-            <a class="text-decoration-none col-3 text-danger" href="/cart/update/<%= product.title %>?action=clear"><i class="fa-solid fa-trash-can"></i></a>&nbsp; -->
-            <a class="badge badge-primary badge-pill text-decoration-none" href="/cart/update/<%= product.title %>?action=add">+</a>&nbsp;
-            <a class="badge badge-primary badge-pill text-decoration-none" href="/cart/update/<%= product.title %>?action=remove">-</a>&nbsp;
-            <a href="/cart/update/<%= product.title %>?action=clear">Clear</a>&nbsp;
+            <a class="text-decoration-none col-3 text-danger" href="/cart/update/<%= product.title %>?action=clear"><i class="fa-solid fa-trash-can"></i></a>&nbsp; 
         </td>
         <td>Rs. <%= sub %></td>
     </tr>
