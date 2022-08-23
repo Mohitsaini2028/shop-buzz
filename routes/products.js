@@ -6,19 +6,19 @@ const auth = require('../config/auth');
 var isUser = auth.isUser;
 
 // Get Page model
-// var Product = require('../models/Product');
 const Product = mongoose.model('Product')
 
 // Get Category model
 const Category = require('../models/category');
+
+// Get Review model
 const Review = require('../models/review');
 
 /*
  * GET all products/
  */
 router.get('/', function (req, res) {
-// router.get('/', isUser, function (req, res) {
-    console.log(req.query.max, req.query.min);
+
     Product.find(function (err, products) {
         if (err)
             console.log(err);
@@ -27,10 +27,7 @@ router.get('/', function (req, res) {
             title: "All products",
             products: products
         });
-        // res.render('all_products', {
-        //     title: "All products",
-        //     products: products
-        // });
+
     });
     
 });
@@ -71,11 +68,14 @@ router.get('/:category', function (req, res) {
     
 });
  
+/*
+ * GET product view
+ */
+
 router.get('/:category/:product', function (req, res) {
 
     var galleryImages = null;
     var loggedIn = (req.isAuthenticated()) ? true : false;
-    // var loggedIn = true;
 
     Product.findOne({slug: req.params.product}, function (err, product) {
         if (err) {
@@ -109,6 +109,10 @@ router.get('/:category/:product', function (req, res) {
 
 });
 
+/*
+ * POST product review
+ */
+
 
 router.post('/review/:productId', async function (req, res) {
 
@@ -122,7 +126,7 @@ router.post('/review/:productId', async function (req, res) {
     console.log((product.ratingCount*product.rating + rating));
     console.log((product.ratingCount + 1));
     console.log((product.ratingCount*product.rating + rating)/(product.ratingCount + 1));
-    // 
+
     product.rating = ((product.ratingCount*product.rating + rating)/(product.ratingCount + 1)).toFixed(2);
     product.ratingCount += 1; 
 
@@ -131,9 +135,6 @@ router.post('/review/:productId', async function (req, res) {
         if (err)
         return console.log(err);
     })  
-
-
-    // 2*4 + 4.5 /  2 + 1
 
     var review = new Review({
         product: product._id ,
@@ -147,10 +148,7 @@ router.post('/review/:productId', async function (req, res) {
         return console.log(err);
     })  
         
-
-    return res.redirect('/products/');
-    // console.log(req.body.rating, req.body.review, req.params.productId);
-    // return res.json();
+    return res.redirect(`/products/${product.category}/${product.slug}`);
 
 });
 

@@ -95,35 +95,27 @@
             <% }); %>
         </ul>
     </div>
-</div>
+    
+    
+    </div>
+    </div>
 
-
-<div class= "container mt-5 border" id="review-section">
-    <h2>Ratings and Reviews</h2>
+    <div class= "container mt-5 border" id="review-section">
+        <h2>Ratings and Reviews</h2>
     
     <% reviews.forEach(function(review){ %>
         <% if(review.user!=="undefined" && review.user!="" && review.user!="null") { %>
             <div class="col-xs-12 col-md-10 border shadow m-2">
                 <h5 class="text-bold mt-3"><span class="bg-dark text-white p-1 rounded"><%= review.user.name %></span> <span> <%= review.createdAt %></span></h5>
                 <p class="mt-1"><span class="p-1"><%= review.review %><span></p>
-                <span class="p-2 m-1 badge badge-success badge-lg"><%= review.rating %> ⭐</span>
-            </div>
+                    <span class="p-2 m-1 badge badge-success badge-lg"><%= review.rating %> ⭐</span>
+                </div>
         <% } %>    
-    <% }); %>
+        <% }); %>
+        
+    </div>  
     
-<div>  
-
-
-<script>
     
-    $("#star-rating").rating();
-
-    // with plugin options (do not attach the CSS class "rating" to your input if using this approach)
-    $("#star-rating").rating({'size':'lg'});
-
-    console.log($("#star-rating-6300a8cacc6e3cae7bb363d9").val());
-
-</script>
 
 
 <%- include('_layouts/footer.ejs'); %>

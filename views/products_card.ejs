@@ -119,41 +119,10 @@
 
 <script>
 
-$("#input1, #input2").click(function() {
-    $(this).closest("form").attr("action", actions[this.id]);
-});
+// $("#input1, #input2").click(function() {
+//     $(this).closest("form").attr("action", actions[this.id]);
+// });
    
-    $('#filter_form').submit(function (e) {
-    
-    let slug = '<%-title%>'
-    let max = document.getElementById('max').value;
-    let min = document.getElementById('min').value;
-
-    let searchTerm = '';
-    
-    
-    if(slug=='All products'){
-        console.log("submit", max, min);
-        // $('#filter_form').action = `/products?max=${max}&?min=${min}`;
-        $('#filter_form').attr('action', '/products?max=45&?min=33');
-        
-        $('#filter_form').submit();
-        
-    }
-    else if(slug=='cat_products'){
-        console.log("submit catx", max, min);
-        $('#filter_form').action = `/products/?max=${max}?min=${min}`;
-
-    }
-    else if(slug=='Search Result'){
-        $('#filter_form').action = `/search${searchTerm}?max=${max}?min=${min}`;
-    }
-    console.log("submit no",slug, typeof slug=='All products');
-
-    // window.history.back();
-});
-
-
 </script>    
             
 <%- include('_layouts/footer.ejs'); %>
