@@ -5,6 +5,7 @@ Shop-buzz is and Online Shopping E-Commerce Website consist of multiple features
 
 ## [Hosted-At](https://shop-buzz.herokuapp.com/) 
 
+# Shop-Buzz Features 
 ## ![](https://via.placeholder.com/15/f03c15/f03c15.png)   ``ADMIN ``
 <li>can create, read, update and delete products.</li>
 <li>can create, read, update and delete pages.</li>
