@@ -15,7 +15,6 @@
 
         <% products.forEach(function(p){ %>    
 
-                <% if (p.discountedPrice<100000000 &&  p.discountedPrice>-1) { %>  
                 <div class="col-md-4">      
                 
                 <div class="card mr-2">
@@ -26,9 +25,7 @@
                             
                             <div class="d-flex justify-content-between align-items-center">
                                 
-                                <span class="discount"> <%= (100 * (Number(p.originalPrice) - Number(p.discountedPrice))/Number(p.originalPrice)).toFixed(0) %> %</span>
-                                <!-- <span class="wishlist"><i class="fa fa-heart-o"></i></span> -->                            
-                                
+                                <span class="discount"> <%= (100 * (Number(p.originalPrice) - Number(p.discountedPrice))/Number(p.originalPrice)).toFixed(0) %> %</span>                                
                             </div>
                         </div>
 
@@ -50,26 +47,13 @@
                             </div>
                             
                         </div>
-                        
-                            <!-- <div class="d-flex justify-content-between align-items-center pt-1"> -->
-                                
-                                <!-- <div class="color-select d-flex ">
-                                    
-                                    <input type="button" name="grey" class="btn creme">
-                                    <input type="button" name="red" class="btn red ml-2">
-                                    <input type="button" name="blue" class="btn blue ml-2">
-                                    
-                                </div> -->    
-                                
                             
                             <div class="d-flex justify-content-between align-items-center pt-1">
                                 <div>
-                                    <!-- <i class="fa fa-star-o rating-star"></i> -->
                                     <span class="rating-number"><%= p.rating %> <i class="fa-solid fa-star"></i></span>
                                 </div>
                                 
                                 <span class="buy"><a class="bg-dark text-decoration-none text-warning p-2 rounded" href="/cart/add/<%= p.slug %>">Add to cart 
-                                    <!-- <i class="fa-solid fa-cart-arrow-down"></i> -->
                                 </a></span>
                                 
                                 
@@ -99,7 +83,6 @@
             </a>
             
         </div>
-        <% } %>
         <% }); %>
 
     <%} else {%>
@@ -114,16 +97,6 @@
 </div>
 
 </div>
-
-
-
-<script>
-
-// $("#input1, #input2").click(function() {
-//     $(this).closest("form").attr("action", actions[this.id]);
-// });
-   
-</script>    
             
 <%- include('_layouts/footer.ejs'); %>
 

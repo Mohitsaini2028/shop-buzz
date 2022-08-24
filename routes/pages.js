@@ -11,18 +11,9 @@ router.get('/', function (req, res) {
 
 
     Page.findOne({slug: 'home'}, function (err, page) {
-        // if (err || !page){
-        //     console.log(err ,"home");
-        //     return res.render('404');
-        // }
 
-            // return res.render('index', {
-            return res.render('home', {
+        return res.render('home', {
             title: "Home",
-            
-            // return res.render('home', {
-            // title: page.title,
-            // content: page.content
         });
     });
     

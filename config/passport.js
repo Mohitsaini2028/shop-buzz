@@ -3,7 +3,6 @@ const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 
 module.exports = function(passport){
-    //                                  done is callback function 
     passport.use(new LocalStrategy(function(username, password, done){
         User.findOne({username: username}, function(err, user){
             if(err) 

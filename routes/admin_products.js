@@ -24,7 +24,6 @@ router.get('/', isAdmin, function (req, res) {
         count = c;
 
         Product.find(function (err, products) {
-            // console.log(count);
             return res.render('admin/products', {
                 products: products,
                 count: count

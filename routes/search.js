@@ -14,10 +14,7 @@ const product = require('../models/product');
 
 router.post('/', async function (req, res) {
 
-    
-    // var categorySlug = req.params.term;
     var searchTerm = req.body.search;
-
     searchTerm = searchTerm.trim();
 
     console.log(searchTerm);
@@ -29,7 +26,6 @@ router.post('/', async function (req, res) {
     
     for (const p of productCat) { 
         products.push(p);
-        console.log("category match", p);
     }
  
 

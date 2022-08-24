@@ -49,7 +49,7 @@ router.post('/add-page', function (req, res) {
 
     var title = req.body.title;
     var slug = req.body.slug.replace(/\s+/g, '-').toLowerCase(); // replacing space
-    if (slug == "")                //if no slug present then slug = title
+    if (slug == "")                //if no slug present then put the value of title in slug.
         slug = title.replace(/\s+/g, '-').toLowerCase();
     var content = req.body.content;
 
